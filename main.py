@@ -77,11 +77,12 @@ def get_freshness(label):
         return 'Unknown'  # Menangani kasus ketika label tidak dapat dipecahkan
 
 # Endpoint untuk melakukan pemindaian gambar
+# Endpoint untuk melakukan pemindaian gambar
 @app.route("/scan", methods=["POST"])
 def index():
     file = request.files.get('file')
     if file is None or file.filename == "":
-        return jsonify({"error": "no file"})
+        return jsonify({"error": "No file uploaded"})
 
     try:
         image_bytes = file.read()
@@ -97,8 +98,12 @@ def index():
         prediction = predict_classification(tensor_classification)
         freshness_info = get_freshness(prediction)
         
-        data = {"prediction": prediction, "freshness_info": freshness_info}
-        return jsonify(data)
+        # Menyiapkan data respons
+        data = {
+            "prediction": prediction,
+            "freshness_info": freshness_info,
+        }
+        return jsonify({"data": data})
     except Exception as e:
         return jsonify({"error": str(e)})
 
