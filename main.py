@@ -68,13 +68,13 @@ def get_freshness(label):
 
         # Memeriksa apakah kata pertama adalah 'fresh' atau 'rotten'
         if first_word == 'fresh':
-            return 'Segar'
+            return 'Fresh'
         elif first_word == 'rotten':
-            return 'Busuk'
+            return 'Rotten'
         else:
-            return 'Tidak Diketahui'  # Jika label tidak sesuai dengan format yang diharapkan
+            return 'Unknown'  # Jika label tidak sesuai dengan format yang diharapkan
     except Exception as e:
-        return 'Tidak Diketahui'  # Menangani kasus ketika label tidak dapat dipecahkan
+        return 'Unknown'  # Menangani kasus ketika label tidak dapat dipecahkan
 
 # Endpoint untuk melakukan pemindaian gambar
 @app.route("/scan", methods=["POST"])
